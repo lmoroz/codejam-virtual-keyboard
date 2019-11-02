@@ -15,7 +15,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./src",
-    "build": "webpack --mode production --config ./webpack.config.js --watch",
+    "build": "webpack --mode production --config ./webpack.config.js",
+    "watch": "webpack --mode development --config ./webpack.config.js --watch",
     "start": "webpack-dev-server"
   },
   "author": "Larisa Morozhnikova",
