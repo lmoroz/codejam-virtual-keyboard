@@ -1,7 +1,8 @@
-// import keysConfig from './modules/keymap';
+import keysConfig from './modules/keymap';
 import Textbox from './modules/Textbox';
-// import Keyboard from './modules/Keyboard';
-// import Key from './modules/Key';
+import Keyboard from './modules/Keyboard';
+import layouts from './modules/Layouts';
+
 const initHTML = () => {
   const head = document.getElementsByTagName('HEAD')[0];
   const link = document.createElement('link');
@@ -11,6 +12,9 @@ const initHTML = () => {
   head.appendChild(link);
 
   const textbox = new Textbox();
+  const keyboard = new Keyboard({
+    keymap: keysConfig, textbox, id: 'kb', layouts, layout: 'en',
+  });
 };
 
 document.addEventListener('DOMContentLoaded', initHTML);
