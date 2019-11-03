@@ -1,0 +1,68 @@
+* {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #131313;
+    width: 100%;
+    height: 100vh;
+}
+
+.textbox {
+    margin-bottom: 25px;
+    background: transparent;
+    color: #777777;
+    min-height: 140px;
+    min-width: 790px;
+    width: 790px;
+    font-size: 20px;
+    padding: 15px;
+    word-wrap: break-word;
+}
+
+.kbd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    min-height: 320px;
+}
+
+.kbd__row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.kbd__key {
+
+}
+
+.kbd__key_char,
+.kbd__key_Escape,
+.kbd__key_Tab,
+.kbd__key_Delete,
+.kbd__key_CapsLock,
+.kbd__key_Enter,
+.kbd__key_ShiftLeft,
+.kbd__key_ShiftRight,
+.kbd__key_ControlLeft,
+.kbd__key_ControlRight {
+    font-weight: bold;
+}
+
+.kbd__key_func,
+.kbd__key_space {
+    flex: 1;
+}
