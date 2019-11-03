@@ -1,10 +1,12 @@
 export default class Key {
-  constructor(keyProps, index, defaultSize, layouts) {
+  constructor({
+    keyProps, index, defaultSize = '60', layouts = [],
+  }) {
     this.layouts = {};
-    const [, code, modifier, size, title, modifier2, chars] = keyProps.match(/^([^:]+):([^:]+):([^:]*):([^:]*):([^:]+):(.+)$/i);
+    const [, code, modifier, size, title, modifier2, chars] = keyProps.match(/^([^:]+):([^:]+):([^:]*):([^:]*):([^:]+):((.|\n)+)$/i);
     this.code = code;
 
-    this.layoutKeys = (modifier === 'key')
+    this.layoutKeys = (modifier === 'char')
       ? chars.split('')
       : (new Array(8)).fill(chars);
 
@@ -13,12 +15,13 @@ export default class Key {
     this.node.setAttribute('type', 'button');
     this.node.setAttribute('data-key-code', code);
 
+    this.node.classList.add('kbd__key');
     this.node.classList.add(`kbd__key_${modifier}`);
     this.node.classList.add(`kbd__key_${modifier2}`);
     this.node.classList.add(`kbd__key_${code}`);
 
     const flexBasis = (size || defaultSize);
-    if (size.match(/\d+/)) this.node.style.flex = '0';
+    if (flexBasis.match(/\d+/)) this.node.style.flex = '0';
     this.node.style.flexBasis = flexBasis.match(/\d+/) ? `${flexBasis}px` : flexBasis;
 
 
