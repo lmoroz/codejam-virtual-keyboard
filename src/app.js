@@ -1,5 +1,5 @@
 // import keysConfig from './modules/keymap';
-// import Textbox from './modules/Textbox';
+import Textbox from './modules/Textbox';
 // import Keyboard from './modules/Keyboard';
 // import Key from './modules/Key';
 const initHTML = () => {
@@ -9,6 +9,8 @@ const initHTML = () => {
   link.type = 'text/css';
   link.href = 'app.css';
   head.appendChild(link);
+
+  const textbox = new Textbox();
 };
 
 document.addEventListener('DOMContentLoaded', initHTML);
