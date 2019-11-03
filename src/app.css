@@ -119,39 +119,39 @@ body {
 }
 
 
-[data-layout="en-caps"] [data-key-code="CapsLock"]::before,
-[data-layout="en-shift-caps"] [data-key-code="CapsLock"]::before,
-[data-layout="ru-caps"] [data-key-code="CapsLock"]::before,
-[data-layout="ru-shift-caps"] [data-key-code="CapsLock"]::before {
+[data-layout="en-caps"] .kbd__key_CapsLock::before,
+[data-layout="en-shift-caps"] .kbd__key_CapsLock::before,
+[data-layout="ru-caps"] .kbd__key_CapsLock::before,
+[data-layout="ru-shift-caps"] .kbd__key_CapsLock::before {
     text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
     font-weight: bold;
 }
 
 
-[data-layout="en"] button:before {
+[data-layout="en"] .kbd__key:before {
     content: attr(data-key-en);
 }
-[data-layout="en-shift"] button:before {
+[data-layout="en-shift"] .kbd__key:before {
     content: attr(data-key-en-shift);
 }
-[data-layout="en-caps"] button:before {
+[data-layout="en-caps"] .kbd__key:before {
     content: attr(data-key-en-caps);
 }
-[data-layout="en-shift-caps"] button:before {
+[data-layout="en-shift-caps"] .kbd__key:before {
     content: attr(data-key-en-shift-caps);
 }
 
 
-[data-layout="ru"] button:before {
+[data-layout="ru"] .kbd__key:before {
     content: attr(data-key-ru);
 }
-[data-layout="ru-shift"] button:before {
+[data-layout="ru-shift"] .kbd__key:before {
     content: attr(data-key-ru-shift);
 }
-[data-layout="ru-caps"] button:before {
+[data-layout="ru-caps"] .kbd__key:before {
     content: attr(data-key-ru-caps);
 }
-[data-layout="ru-shift-caps"] button:before {
+[data-layout="ru-shift-caps"] .kbd__key:before {
     content: attr(data-key-ru-shift-caps);
 }
 
