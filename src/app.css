@@ -154,3 +154,55 @@ body {
 [data-layout="ru-shift-caps"] button:before {
     content: attr(data-key-ru-shift-caps);
 }
+
+.kbd__key::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    content: '';
+
+    width: calc(100%);
+    height: calc(100%);
+
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+
+    position: absolute;
+    z-index: -2;
+
+    top: 0;
+    left:0;
+
+    filter: blur(5px);
+    font-size: 120%;
+
+    background-size: 400%;
+
+    animation: glowing 20s linear infinite;
+
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+
+    border-radius: 10px;
+}
+
+
+.kbd__key:active::before,
+.kbd__key.active::before {
+    top: 7px;
+    left: 7px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.8);
+
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+}
+.kbd__key:hover::after {
+    opacity: 1;
+}
+
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
