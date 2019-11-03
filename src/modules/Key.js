@@ -3,21 +3,23 @@ export default class Key {
     keyProps, index, defaultSize = '60', layouts = [],
   }) {
     this.layouts = {};
-    const [, code, modifier, size, title, modifier2, chars] = keyProps.match(/^([^:]+):([^:]+):([^:]*):([^:]*):([^:]+):((.|\n)+)$/i);
+    const [, code, modifier, size, title, type, chars] = keyProps.match(/^([^:]+):([^:]+):([^:]*):([^:]*):([^:]+):((.|\n)+)$/i);
     this.code = code;
+    this.type = type;
 
-    this.layoutKeys = (modifier === 'char')
+    this.layoutKeys = ['symbol', 'letter'].includes(type)
       ? chars.split('')
       : (new Array(8)).fill(chars);
 
     this.node = document.createElement('button');
+
     this.node.setAttribute('tabindex', index + 1);
     this.node.setAttribute('type', 'button');
     this.node.setAttribute('data-key-code', code);
 
     this.node.classList.add('kbd__key');
     this.node.classList.add(`kbd__key_${modifier}`);
-    this.node.classList.add(`kbd__key_${modifier2}`);
+    this.node.classList.add(`kbd__key_${type}`);
     this.node.classList.add(`kbd__key_${code}`);
 
     const flexBasis = (size || defaultSize);
