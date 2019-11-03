@@ -8,57 +8,48 @@ export default class Textbox {
   }
 
   addchar(char) {
-    const currentContent = this.element.textContent;
+    const currentContent = this.element.value;
     const startPosition = this.element.selectionStart;
     const endPosition = this.element.selectionEnd;
+
     this.setContent(
       currentContent.substr(0, startPosition),
       char,
-      currentContent.substr(startPosition, endPosition),
+      currentContent.substr(endPosition, currentContent.length),
     );
+    this.caretAt(endPosition + 1);
   }
 
   removeLeft() {
-    const currentContent = this.element.textContent;
+    const currentContent = this.element.value;
     const startPosition = this.element.selectionStart - 1;
     const endPosition = this.element.selectionEnd;
     this.setContent(
       currentContent.substr(0, startPosition),
-      currentContent.substr(startPosition, endPosition),
+      currentContent.substr(endPosition, currentContent.length),
     );
   }
 
   removeRight() {
-    const currentContent = this.element.textContent;
+    const currentContent = this.element.value;
     const startPosition = this.element.selectionStart;
     const endPosition = this.element.selectionEnd + 1;
     this.setContent(
       currentContent.substr(0, startPosition),
-      currentContent.substr(startPosition, endPosition),
+      currentContent.substr(endPosition, currentContent.length),
     );
   }
 
   setContent(...parts) {
-    this.element.textContent = parts.join('');
+    this.element.value = parts.join('');
   }
 
-  caretRight() {
-    const newPosition = this.element.selectionStart + 1;
+  caretAt(position = 'end') {
+    let newPosition = position;
+    if (position === 'end') {
+      const currentContent = this.element.value;
+      newPosition = currentContent.length;
+    }
     this.element.setSelectionRange(newPosition, newPosition);
-  }
-
-  caretLeft() {
-    const newPosition = this.element.selectionStart - 1;
-    this.element.setSelectionRange(newPosition, newPosition);
-  }
-
-  selectRight() {
-    const curPosition = this.element.selectionStart;
-    this.element.setSelectionRange(curPosition, curPosition + 1);
-  }
-
-  selectLeft() {
-    const curPosition = this.element.selectionStart;
-    this.element.setSelectionRange(curPosition, curPosition - 1);
   }
 }
