@@ -10,4 +10,5 @@ const initHTML = () => {
   link.href = 'app.css';
   head.appendChild(link);
 };
+
 document.addEventListener('DOMContentLoaded', initHTML);
