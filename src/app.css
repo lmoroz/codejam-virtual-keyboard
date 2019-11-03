@@ -128,30 +128,30 @@ body {
 }
 
 
-[data-layout="en"] .kbd__key:before {
+[data-layout="en"] .kbd__key::before {
     content: attr(data-key-en);
 }
-[data-layout="en-shift"] .kbd__key:before {
+[data-layout="en-shift"] .kbd__key::before {
     content: attr(data-key-en-shift);
 }
-[data-layout="en-caps"] .kbd__key:before {
+[data-layout="en-caps"] .kbd__key::before {
     content: attr(data-key-en-caps);
 }
-[data-layout="en-shift-caps"] .kbd__key:before {
+[data-layout="en-shift-caps"] .kbd__key::before {
     content: attr(data-key-en-shift-caps);
 }
 
 
-[data-layout="ru"] .kbd__key:before {
+[data-layout="ru"] .kbd__key::before {
     content: attr(data-key-ru);
 }
-[data-layout="ru-shift"] .kbd__key:before {
+[data-layout="ru-shift"] .kbd__key::before {
     content: attr(data-key-ru-shift);
 }
-[data-layout="ru-caps"] .kbd__key:before {
+[data-layout="ru-caps"] .kbd__key::before {
     content: attr(data-key-ru-caps);
 }
-[data-layout="ru-shift-caps"] .kbd__key:before {
+[data-layout="ru-shift-caps"] .kbd__key::before {
     content: attr(data-key-ru-shift-caps);
 }
 
