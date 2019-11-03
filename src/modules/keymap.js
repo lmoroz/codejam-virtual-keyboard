@@ -58,7 +58,7 @@ export const keymap = [
   'Period:char:::symbol:.>.>юЮЮю',
   'Slash:char:::symbol:/?/?.,.,',
   'ArrowUp:func::⇧:func:ArrowUp',
-  'ShiftRight:func:154::func:Shift',
+  'ShiftRight:func:140::func:Shift',
   '',
   'ControlLeft:func:70:Ctrl:func:Control',
   'MetaLeft:func::Win:func:Meta',
