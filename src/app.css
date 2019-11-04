@@ -87,8 +87,7 @@ body {
 }
 
 .kbd__key_Backspace,
-.kbd__key_Escape
-{
+.kbd__key_Escape {
     font-size: 13px;
 }
 
@@ -105,7 +104,7 @@ body {
     width: calc(100% - 10px);
     height: calc(100% - 10px);
 
-    background: linear-gradient(135deg, rgba(66,66,66,0.8) 0%,rgba(130,140,149,0.8) 36%,rgba(17,17,17,0.8) 100%);
+    background: linear-gradient(135deg, rgba(66, 66, 66, 0.8) 0%, rgba(130, 140, 149, 0.8) 36%, rgba(17, 17, 17, 0.8) 100%);
     position: absolute;
     z-index: -1;
     border-radius: 10px;
@@ -114,7 +113,7 @@ body {
     left: 4px;
 
     text-shadow: -1px -1px 0 #2e2e29;
-    box-shadow: 3px 3px 3px rgba(0,0,0,0.85);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.85);
     transition: text-shadow .1s ease, color .5s ease-in-out;
 }
 
@@ -131,12 +130,15 @@ body {
 [data-layout="en"] .kbd__key::before {
     content: attr(data-key-en);
 }
+
 [data-layout="en-shift"] .kbd__key::before {
     content: attr(data-key-en-shift);
 }
+
 [data-layout="en-caps"] .kbd__key::before {
     content: attr(data-key-en-caps);
 }
+
 [data-layout="en-shift-caps"] .kbd__key::before {
     content: attr(data-key-en-shift-caps);
 }
@@ -145,12 +147,15 @@ body {
 [data-layout="ru"] .kbd__key::before {
     content: attr(data-key-ru);
 }
+
 [data-layout="ru-shift"] .kbd__key::before {
     content: attr(data-key-ru-shift);
 }
+
 [data-layout="ru-caps"] .kbd__key::before {
     content: attr(data-key-ru-caps);
 }
+
 [data-layout="ru-shift-caps"] .kbd__key::before {
     content: attr(data-key-ru-shift-caps);
 }
@@ -171,10 +176,9 @@ body {
     z-index: -2;
 
     top: 0;
-    left:0;
+    left: 0;
 
     filter: blur(5px);
-    font-size: 120%;
 
     background-size: 400%;
 
@@ -191,18 +195,31 @@ body {
 .kbd__key.active::before {
     top: 5.5px;
     left: 5.5px;
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.75);
     background: rgba(0, 0, 0, 0.8);
 
     text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+    font-size: 250%;
 }
-.kbd__key:hover::after {
+
+.kbd__key_Backspace:active::before,
+.kbd__key_Backspace.active::before {
+    font-size: 120%;
+}
+
+.kbd__key:not([disabled]):hover::after {
     opacity: 1;
 }
 
 
 @keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
