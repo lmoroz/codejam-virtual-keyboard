@@ -2,9 +2,12 @@ export default class Textbox {
   constructor(id = 'textbox', classnames = 'textbox') {
     this.element = document.createElement('textarea');
     this.element.setAttribute('id', id);
+
     const classList = (!Array.isArray(classnames)) ? [classnames] : classnames;
     classList.forEach((classname) => this.element.classList.add(classname));
+
     document.body.prepend(this.element);
+    this.caretPosition = 0;
   }
 
   addchar(char) {
@@ -28,6 +31,7 @@ export default class Textbox {
       currentContent.substr(0, startPosition),
       currentContent.substr(endPosition, currentContent.length),
     );
+    this.caretAt(startPosition);
   }
 
   removeRight() {
@@ -38,18 +42,29 @@ export default class Textbox {
       currentContent.substr(0, startPosition),
       currentContent.substr(endPosition, currentContent.length),
     );
+    this.caretAt(startPosition);
   }
 
   setContent(...parts) {
     this.element.value = parts.join('');
   }
 
-  caretAt(position = 'end') {
-    let newPosition = position;
-    if (position === 'end') {
+  caretAt(positionStart = 'end', positionEnd = false) {
+    let newPosition = positionStart;
+    if (newPosition === 'end') {
       const currentContent = this.element.value;
       newPosition = currentContent.length;
     }
-    this.element.setSelectionRange(newPosition, newPosition);
+    if (newPosition < 0) newPosition = 0;
+    this.element.setSelectionRange(newPosition, positionEnd || newPosition);
+    this.caretPosition = newPosition;
+  }
+
+  caretLeft() {
+    this.caretAt(this.caretPosition - 1);
+  }
+
+  caretRight() {
+    this.caretAt(this.caretPosition + 1);
   }
 }

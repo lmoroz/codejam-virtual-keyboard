@@ -17,6 +17,8 @@ export default class Key {
     this.node.setAttribute('type', 'button');
     this.node.setAttribute('data-key-code', code);
 
+    if (['ArrowUp', 'ArrowDown'].includes(code)) this.node.setAttribute('disabled', true);
+
     this.node.classList.add('kbd__key');
     this.node.classList.add(`kbd__key_${modifier}`);
     this.node.classList.add(`kbd__key_${type}`);

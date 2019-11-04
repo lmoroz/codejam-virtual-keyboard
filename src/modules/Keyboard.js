@@ -96,18 +96,65 @@ export default class Keyboard {
   }
 
   mouseEvent(e) {
-    if (!(e.code in this.keys)) return;
-    this.textbox.element.focus();
-    this[e.type](e.code, e.type);
+    const curKey = e.target.dataset.keyCode;
+    if (!curKey) return;
+    if (!(document.activeElement === this.textbox.element)) {
+      this.textbox.element.focus();
+      this.textbox.caretAt(this.textbox.caretPosition);
+    }
+
+    const newSates = [];
+
+
+    if (this.keys[curKey].type === 'func') {
+      if (e.type === 'mousedown') {
+        newSates.push(this.lang);
+        switch (curKey) {
+          case 'MetaLeft': {
+            this.lang = this.lang === 'ru' ? 'en' : 'ru';
+            newSates[0] = this.lang;
+            break;
+          }
+          case 'CapsLock': {
+            this.capsEnabled = !this.capsEnabled;
+            break;
+          }
+          case 'ShiftLeft':
+          case 'ShiftRight': {
+            newSates.push('shift');
+            break;
+          }
+          case 'Escape': {
+            this.textbox.element.blur();
+            break;
+          }
+          case 'Backspace': {
+            this.textbox.removeLeft();
+            break;
+          }
+          case 'Delete': {
+            this.textbox.removeRight();
+            break;
+          }
+          case 'ArrowLeft': {
+            this.textbox.caretLeft();
+            break;
+          }
+          case 'ArrowRight': {
+            this.textbox.caretRight();
+            break;
+          }
+          default: break;
+        }
+      } else newSates.push(this.lang);
+
+      if (this.capsEnabled) newSates.push('caps');
+      this.element.dataset.layout = newSates.join('-');
+    } else if (e.type === 'mousedown') {
+      this.textbox.addchar(this.keys[curKey].layouts[this.element.dataset.layout]);
+    }
   }
 
-  mousedown(code) {
-    this.keys[code].mousedown();
-  }
-
-  mouseup(code) {
-    this.keys[code].mouseup();
-  }
 
   keydown(code) {
     this.keys[code].keydown();
