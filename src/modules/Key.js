@@ -37,13 +37,6 @@ export default class Key {
     this[type]();
   }
 
-  mousedown() {
-    this.node.classList.add('active');
-  }
-
-  mouseup() {
-    this.node.classList.remove('active');
-  }
 
   keydown() {
     this.node.classList.add('active');
