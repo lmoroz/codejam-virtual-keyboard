@@ -35,9 +35,8 @@ body {
     border-radius: 10px;
     position: relative;
     text-align: center;
-    min-height: 320px;
-    min-width: 1124px;
-    width: 1124px;
+    min-width: 934px;
+    width: 934px;
 }
 
 .kbd__row {
@@ -60,9 +59,9 @@ body {
 
 .kbd__key {
     font-size: 16px;
-    box-shadow: 0 0 0 8px #000000;
-    outline: 8px solid #000000;
-    height: 55px;
+    box-shadow: 0 0 0 4px #000000;
+    outline: 4px solid #000000;
+    height: 50px;
     border: none;
     border-radius: 10px;
     color: #ffffffaa;
@@ -70,7 +69,8 @@ body {
     cursor: pointer;
     position: relative;
     z-index: 1;
-    margin: 6px;
+    margin: 2px;
+    overflow: visible;
 }
 
 .kbd__key_char,
@@ -102,16 +102,16 @@ body {
     justify-content: center;
     align-items: center;
 
-    width: calc(100% - 16px);
-    height: calc(100% - 14px);
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
 
     background: linear-gradient(135deg, rgba(66,66,66,0.8) 0%,rgba(130,140,149,0.8) 36%,rgba(17,17,17,0.8) 100%);
     position: absolute;
     z-index: -1;
     border-radius: 10px;
 
-    top: 5px;
-    left: 7px;
+    top: 4px;
+    left: 4px;
 
     text-shadow: -1px -1px 0 #2e2e29;
     box-shadow: 3px 3px 3px rgba(0,0,0,0.85);
@@ -189,8 +189,8 @@ body {
 
 .kbd__key:active::before,
 .kbd__key.active::before {
-    top: 7px;
-    left: 7px;
+    top: 5.5px;
+    left: 5.5px;
     box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
     background: rgba(0, 0, 0, 0.8);
 

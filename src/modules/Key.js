@@ -1,6 +1,6 @@
 export default class Key {
   constructor({
-    keyProps, index, defaultSize = '60', layouts = [],
+    keyProps, index, defaultSize = '55', layouts = [],
   }) {
     this.layouts = {};
     const [, code, modifier, size, title, type, chars] = keyProps.match(/^([^:]+):([^:]+):([^:]*):([^:]*):([^:]+):((.|\n)+)$/i);
