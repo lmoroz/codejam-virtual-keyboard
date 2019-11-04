@@ -3,14 +3,17 @@ import Textbox from './modules/Textbox';
 import Keyboard from './modules/Keyboard';
 import layoutsList from './modules/Layouts';
 
-const initHTML = () => {
+const addStyleLink = (cssLink) => {
   const head = document.getElementsByTagName('HEAD')[0];
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';
-  link.href = 'app.css';
+  link.href = cssLink;
   head.appendChild(link);
-
+};
+const initHTML = () => {
+  addStyleLink('app.css');
+  addStyleLink('https://fonts.googleapis.com/css?family=Roboto:300,400&amp;display=swap');
   const textbox = new Textbox();
   const keyboard = new Keyboard({
     keymap: keysConfig, textbox, id: 'kb', layouts: layoutsList,

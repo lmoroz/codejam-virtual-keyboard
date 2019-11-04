@@ -21,6 +21,11 @@ export default class Keyboard {
     this.bypassKeys = ['Enter', 'Escape', 'Backspace', 'Del', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
     this.schortcutKeys = ['KeyA', 'KeyC', 'KeyV', 'KeyX'];
     this.drawKeys(keymap, classList);
+
+    const tipElement = document.createElement('div');
+    tipElement.classList.add('tip');
+    tipElement.innerHTML = '<span class="arrow">⬑ </span>Переключение раскладки: Shift+Alt физической или Win экранной клавиатуры';
+    document.body.append(tipElement);
   }
 
   get capsEnabled() {
