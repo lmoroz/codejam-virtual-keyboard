@@ -24,12 +24,16 @@ module.exports = {
       filename: 'index.html',
       template: 'src/index.html',
     }),
-    new CopyWebpackPlugin(
-      [{
+    new CopyWebpackPlugin([
+      {
         from: './src/screen.png',
         to: './',
-      }],
-    ),
+      },
+      {
+        from: './src/app.css',
+        to: './',
+      },
+    ]),
   ],
   module: {},
 };
