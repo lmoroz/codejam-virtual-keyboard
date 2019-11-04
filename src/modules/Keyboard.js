@@ -19,7 +19,7 @@ export default class Keyboard {
     this.textbox = textbox;
     this.keys = {};
     this.bypassKeys = ['Enter', 'Escape', 'Backspace', 'Del', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
-    this.schortcutKeys = ['KeyA', 'KeyC', 'KeyV', 'KeyX'];
+    this.schortcutKeys = ['KeyA', 'KeyC', 'KeyV', 'KeyX', 'KeyZ', 'KeyY'];
     this.drawKeys(keymap, classList);
 
     const tipElement = document.createElement('div');
