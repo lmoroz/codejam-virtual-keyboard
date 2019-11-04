@@ -170,6 +170,14 @@ export default class Keyboard {
             this.textbox.caretRight();
             break;
           }
+          case 'ArrowUp': {
+            this.textbox.caretUp();
+            break;
+          }
+          case 'ArrowDown': {
+            this.textbox.caretDown();
+            break;
+          }
           default:
             break;
         }
