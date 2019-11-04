@@ -1,7 +1,7 @@
 import keysConfig from './modules/keymap';
 import Textbox from './modules/Textbox';
 import Keyboard from './modules/Keyboard';
-import layouts from './modules/Layouts';
+import layoutsList from './modules/Layouts';
 
 const initHTML = () => {
   const head = document.getElementsByTagName('HEAD')[0];
@@ -13,8 +13,15 @@ const initHTML = () => {
 
   const textbox = new Textbox();
   const keyboard = new Keyboard({
-    keymap: keysConfig, textbox, id: 'kb', layouts, layout: 'en',
+    keymap: keysConfig, textbox, id: 'kb', layouts: layoutsList, initialLang: 'en',
   });
+
+  const boundToKeyboardKeyEvent = keyboard.keyEvent.bind(keyboard);
+  const boundToKeyboardMouseEvent = keyboard.mouseEvent.bind(keyboard);
+  window.addEventListener('keydown', boundToKeyboardKeyEvent);
+  window.addEventListener('keyup', boundToKeyboardKeyEvent);
+  document.addEventListener('mousedown', boundToKeyboardMouseEvent);
+  document.addEventListener('mouseup', boundToKeyboardMouseEvent);
 };
 
 document.addEventListener('DOMContentLoaded', initHTML);
