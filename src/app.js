@@ -1,3 +1,4 @@
+import cssPath from './app.css';
 import keysConfig from './modules/keymap';
 import Textbox from './modules/Textbox';
 import Keyboard from './modules/Keyboard';
@@ -12,7 +13,7 @@ const addStyleLink = (cssLink) => {
   head.appendChild(link);
 };
 const initHTML = () => {
-  addStyleLink('app.css');
+  addStyleLink(cssPath);
   addStyleLink('https://fonts.googleapis.com/css?family=Roboto:300,400&amp;display=swap');
   const textbox = new Textbox();
   const keyboard = new Keyboard({

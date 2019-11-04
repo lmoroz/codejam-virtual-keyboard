@@ -8,7 +8,7 @@ module.exports = {
   mode: 'development',
   entry: { app: './src/app.js' },
   output: {
-    filename: '[name].js',
+    filename: '[name].js?[contenthash]',
     path: path.resolve(__dirname, './build/'),
   },
   devServer: {
@@ -19,7 +19,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: true,
       hash: false,
       filename: 'index.html',
       template: 'src/index.html',
@@ -29,11 +29,33 @@ module.exports = {
         from: './src/screen.png',
         to: './',
       },
-      {
-        from: './src/app.css',
-        to: './',
-      },
     ]),
   ],
-  module: {},
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              assetsPublicPath: '',
+              outputPath: './',
+              name: '[name].[ext]?[contenthash]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(html)$/,
+        use: [{
+          loader: 'html-loader',
+          options: {
+            assetsPublicPath: '',
+            minimize: true,
+          },
+        }],
+      },
+    ],
+  },
 };
