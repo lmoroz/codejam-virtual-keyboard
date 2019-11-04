@@ -2,24 +2,45 @@ import Key from './Key';
 
 export default class Keyboard {
   constructor({
-    keymap, textbox, id = 'keyboard', layouts = ['en'], initialLang = 'en', classnames = 'kbd',
+    keymap, textbox, id = 'keyboard', layouts = ['en'], classnames = 'kbd',
   }) {
+    this.langs = layouts;
+
     this.element = document.createElement('div');
     this.element.setAttribute('id', id);
-    this.element.dataset.layout = initialLang;
+    const layoutState = [this.lang];
+    if (this.capsEnabled) layoutState.push('caps');
+    this.element.dataset.layout = layoutState.join('-');
 
     const classList = (!Array.isArray(classnames)) ? [classnames] : classnames;
     classList.forEach((classname) => this.element.classList.add(classname));
     document.body.append(this.element);
 
-    this.lang = initialLang;
-    this.langs = layouts;
     this.textbox = textbox;
-    this.capsEnabled = false;
     this.keys = {};
     this.bypassKeys = ['Enter', 'Escape', 'Backspace', 'Del', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
     this.schortcutKeys = ['KeyA', 'KeyC', 'KeyV', 'KeyX'];
     this.drawKeys(keymap, classList);
+  }
+
+  get capsEnabled() {
+    this.capsEnabledInternal = !!parseInt(localStorage.cjvcCapsEnabled, 10) || 0;
+    return this.capsEnabledInternal;
+  }
+
+  set capsEnabled(capsEnabledNewValue) {
+    this.capsEnabledInternal = capsEnabledNewValue ? 1 : 0;
+    localStorage.cjvcCapsEnabled = this.capsEnabledInternal;
+  }
+
+  get lang() {
+    this.langInternal = localStorage.cjvcLangName || 'en';
+    return this.langInternal;
+  }
+
+  set lang(langName) {
+    this.langInternal = langName;
+    localStorage.cjvcLangName = this.langInternal;
   }
 
   drawKeys(keymap, classList) {
@@ -116,7 +137,7 @@ export default class Keyboard {
             break;
           }
           case 'CapsLock': {
-            this.capsEnabled = !this.capsEnabled;
+            this.capsEnabled = this.capsEnabled ? 0 : 1;
             break;
           }
           case 'ShiftLeft':
@@ -144,7 +165,8 @@ export default class Keyboard {
             this.textbox.caretRight();
             break;
           }
-          default: break;
+          default:
+            break;
         }
       } else newSates.push(this.lang);
 

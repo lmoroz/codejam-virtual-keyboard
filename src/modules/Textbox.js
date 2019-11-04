@@ -2,12 +2,23 @@ export default class Textbox {
   constructor(id = 'textbox', classnames = 'textbox') {
     this.element = document.createElement('textarea');
     this.element.setAttribute('id', id);
+    this.element.value = this.content;
 
     const classList = (!Array.isArray(classnames)) ? [classnames] : classnames;
     classList.forEach((classname) => this.element.classList.add(classname));
 
     document.body.prepend(this.element);
     this.caretPosition = 0;
+  }
+
+  set content(newContent) {
+    this.element.value = newContent;
+    localStorage.cjvcTextcontent = newContent;
+  }
+
+  get content() {
+    this.currentContent = localStorage.cjvcTextcontent || '';
+    return this.currentContent;
   }
 
   addchar(char) {
@@ -46,7 +57,7 @@ export default class Textbox {
   }
 
   setContent(...parts) {
-    this.element.value = parts.join('');
+    this.content = parts.join('');
   }
 
   caretAt(positionStart = 'end', positionEnd = false) {

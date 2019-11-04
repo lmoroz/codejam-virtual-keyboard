@@ -13,7 +13,7 @@ const initHTML = () => {
 
   const textbox = new Textbox();
   const keyboard = new Keyboard({
-    keymap: keysConfig, textbox, id: 'kb', layouts: layoutsList, initialLang: 'en',
+    keymap: keysConfig, textbox, id: 'kb', layouts: layoutsList,
   });
 
   const boundToKeyboardKeyEvent = keyboard.keyEvent.bind(keyboard);
