@@ -38,28 +38,43 @@ export default class Textbox {
       char,
       currentContent.substr(endPosition, currentContent.length),
     );
-    this.caretAt(endPosition + 1);
+    if (startPosition < endPosition) this.caretAt(startPosition + 1);
+    else this.caretAt(endPosition + 1);
   }
 
   removeLeft() {
     const currentContent = this.element.value;
-    const startPosition = this.element.selectionStart - 1;
+    const startPosition = this.element.selectionStart;
     const endPosition = this.element.selectionEnd;
-    this.setContent(
-      currentContent.substr(0, startPosition),
-      currentContent.substr(endPosition, currentContent.length),
-    );
+    if (startPosition < endPosition) {
+      this.setContent(
+        currentContent.substr(0, startPosition),
+        currentContent.substr(endPosition, currentContent.length),
+      );
+    } else {
+      this.setContent(
+        currentContent.substr(0, startPosition - 1),
+        currentContent.substr(endPosition, currentContent.length),
+      );
+    }
     this.caretAt(startPosition);
   }
 
   removeRight() {
     const currentContent = this.element.value;
     const startPosition = this.element.selectionStart;
-    const endPosition = this.element.selectionEnd + 1;
-    this.setContent(
-      currentContent.substr(0, startPosition),
-      currentContent.substr(endPosition, currentContent.length),
-    );
+    const endPosition = this.element.selectionEnd;
+    if (startPosition < endPosition) {
+      this.setContent(
+        currentContent.substr(0, startPosition),
+        currentContent.substr(endPosition, currentContent.length),
+      );
+    } else {
+      this.setContent(
+        currentContent.substr(0, startPosition),
+        currentContent.substr(endPosition + 1, currentContent.length),
+      );
+    }
     this.caretAt(startPosition);
   }
 
