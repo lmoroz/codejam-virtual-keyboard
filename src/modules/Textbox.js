@@ -9,10 +9,17 @@ export default class Textbox {
 
     document.body.prepend(this.element);
     this.caretPosition = 0;
+
+    const saveContentBound = (e) => {
+      this.content = e.target.value;
+    };
+    this.element.addEventListener('change', saveContentBound);
+    this.element.addEventListener('mouseup', saveContentBound);
+    this.element.addEventListener('keyup', saveContentBound);
   }
 
   set content(newContent) {
-    this.element.value = newContent;
+    this.currentContent = newContent;
     localStorage.cjvcTextcontent = newContent;
   }
 
@@ -57,7 +64,7 @@ export default class Textbox {
   }
 
   setContent(...parts) {
-    this.content = parts.join('');
+    this.element.value = parts.join('');
   }
 
   caretAt(positionStart = 'end', positionEnd = false) {
