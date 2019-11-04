@@ -19,7 +19,7 @@ body {
 
 .textbox {
     flex: 1;
-    margin-bottom: 25px;
+    margin: 25px auto;
     background: transparent;
     color: #777777;
     min-height: 140px;

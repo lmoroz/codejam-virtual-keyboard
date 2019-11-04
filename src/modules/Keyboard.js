@@ -5,27 +5,35 @@ export default class Keyboard {
     keymap, textbox, id = 'keyboard', layouts = ['en'], classnames = 'kbd',
   }) {
     this.langs = layouts;
+    this.keys = {};
+    this.pressedKeys = {};
+    this.bypassKeys = ['Enter', 'Escape', 'Backspace', 'Del', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
+    this.schortcutKeys = ['KeyA', 'KeyC', 'KeyV', 'KeyX', 'KeyZ', 'KeyY', 'KeyR'];
 
     this.element = document.createElement('div');
     this.element.setAttribute('id', id);
-    const layoutState = [this.lang];
-    if (this.capsEnabled) layoutState.push('caps');
-    this.element.dataset.layout = layoutState.join('-');
+    this.restoreState();
 
     const classList = (!Array.isArray(classnames)) ? [classnames] : classnames;
     classList.forEach((classname) => this.element.classList.add(classname));
     document.body.append(this.element);
 
     this.textbox = textbox;
-    this.keys = {};
-    this.bypassKeys = ['Enter', 'Escape', 'Backspace', 'Del', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight'];
-    this.schortcutKeys = ['KeyA', 'KeyC', 'KeyV', 'KeyX', 'KeyZ', 'KeyY'];
     this.drawKeys(keymap, classList);
 
     const tipElement = document.createElement('div');
     tipElement.classList.add('tip');
     tipElement.innerHTML = '<span class="arrow">⬑ </span>Переключение раскладки: Shift+Alt физической или Win экранной клавиатуры';
     document.body.append(tipElement);
+  }
+
+  restoreState() {
+    if (Object.keys(this.pressedKeys).length > 0) {
+      Object.keys(this.pressedKeys).forEach((code) => this.keyup(code));
+    }
+    const layoutState = [this.lang];
+    if (this.capsEnabled) layoutState.push('caps');
+    this.element.dataset.layout = layoutState.join('-');
   }
 
   get capsEnabled() {
@@ -193,9 +201,11 @@ export default class Keyboard {
 
   keydown(code) {
     this.keys[code].keydown();
+    this.pressedKeys[code] = this.keys[code];
   }
 
   keyup(code) {
     this.keys[code].keyup();
+    delete this.pressedKeys[code];
   }
 }

@@ -20,10 +20,16 @@ const initHTML = () => {
     keymap: keysConfig, textbox, id: 'kb', layouts: layoutsList,
   });
 
+  const boundToKeyboardRestore = keyboard.restoreState.bind(keyboard);
+  window.addEventListener('blur', boundToKeyboardRestore);
+  window.addEventListener('mouseout', boundToKeyboardRestore);
+  window.addEventListener('mouseleave', boundToKeyboardRestore);
+
   const boundToKeyboardKeyEvent = keyboard.keyEvent.bind(keyboard);
-  const boundToKeyboardMouseEvent = keyboard.mouseEvent.bind(keyboard);
   window.addEventListener('keydown', boundToKeyboardKeyEvent);
   window.addEventListener('keyup', boundToKeyboardKeyEvent);
+
+  const boundToKeyboardMouseEvent = keyboard.mouseEvent.bind(keyboard);
   document.addEventListener('mousedown', boundToKeyboardMouseEvent);
   document.addEventListener('mouseup', boundToKeyboardMouseEvent);
 };
