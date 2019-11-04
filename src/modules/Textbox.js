@@ -51,13 +51,14 @@ export default class Textbox {
         currentContent.substr(0, startPosition),
         currentContent.substr(endPosition, currentContent.length),
       );
+      this.caretAt(startPosition);
     } else {
       this.setContent(
         currentContent.substr(0, startPosition - 1),
         currentContent.substr(endPosition, currentContent.length),
       );
+      this.caretAt(startPosition - 1);
     }
-    this.caretAt(startPosition);
   }
 
   removeRight() {
