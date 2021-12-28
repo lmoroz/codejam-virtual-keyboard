@@ -1,4 +1,4 @@
-1. [задание](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/codejam-virtual-keyboard.md)
+1. [задание](https://github.com/lmoroz/codejam-virtual-keyboard/blob/master/task.md)
 2. [результат выполнения задания](https://ubiz.ru/codejam-virtual-keyboard/)
 3. скриншот:
     ![screenshot](https://ubiz.ru/codejam-virtual-keyboard/screen.png)
