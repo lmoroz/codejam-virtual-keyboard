@@ -1,4 +1,10 @@
-# RSS Виртуальная клавиатура
+# Результат: 
+### [---> ONLINE DEMO <---](https://ubiz.ru/codejam-virtual-keyboard/)
+
+![](https://ubiz.ru/codejam-virtual-keyboard/screen.png)
+
+
+# Задание: Виртуальная клавиатура
 
 ### Deadline:
 
